@@ -123,7 +123,7 @@
   margin:20px auto;
   background : hsla(0, 0%, 0%, 0.514);
   position: absolute;
-  top: 80%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: medium;
@@ -147,4 +147,37 @@
 
 #lofivid{
   text-align: center;
+}
+
+#fastrvl-btn{
+  border-radius: 16px;
+  width: 15%;
+  transition: 0.3s
+}
+
+#fastrvl-btn:hover{
+  border-radius: 16px;
+  width: 25%;
+}
+
+#carped-btn{
+  border-radius: 16px;
+  width: 15%;
+  transition: 0.3s
+}
+
+#carped-btn:hover{
+  border-radius: 16px;
+  width: 25%;
+}
+
+#lofi-btn{
+  border-radius: 16px;
+  width: 15%;
+  transition: 0.3s
+}
+
+#lofi-btn:hover{
+  border-radius: 16px;
+  width: 25%;
 }
