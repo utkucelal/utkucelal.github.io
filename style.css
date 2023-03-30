@@ -101,6 +101,7 @@
   position: absolute;
   top: 30%;
   left: 0%;
+  font-family: system-ui;
 }
 
 #carped{
@@ -113,6 +114,7 @@
   position: absolute;
   top: 30%;
   right: 0%;
+  font-family: system-ui;
 }
 
 #ders{
