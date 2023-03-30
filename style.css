@@ -1,0 +1,148 @@
+#container{
+    border-radius :20px;
+    width:400px;
+    margin:20px auto;
+    padding:20px;
+    text-align:center;
+    background : hsla(0, 0%, 0%, 0.514);
+  }
+  
+  #timer{ 
+    color:rgb(255, 255, 255); 
+    font-size:50px; 
+    margin:10px auto;
+    border : 5px solid rgb(255, 255, 255);
+    border-radius:50%;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    position:relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+  }
+  
+  #time{
+    margin-top:70px;
+    z-index : 1;
+    position:relative;
+  }
+  
+  #filler{
+    background : #ddffcc;
+    height: 0px;
+    width: 200px;
+    position:absolute;
+    bottom:0;
+  }
+  
+  #buttons button { 
+    background:#387bbe; 
+    border:none; 
+    color:#fff; 
+    cursor:pointer; 
+    padding:5px; 
+    width:90px; 
+    margin:10px auto;
+    font-size:14px;
+    height : 50px;
+    border-radius : 50px;
+  }
+  
+  #buttons button#shortBreak{
+    background : rgb(0, 133, 0);
+  }
+  
+  #buttons button#longBreak{
+    background : rgb(0, 82, 0);
+  }
+  
+  #buttons button#stop{
+    background : rgb(126, 0, 0);
+  }
+
+ #backgroundBody{
+  background: linear-gradient(315deg, #000000, #431455, #5c1c75);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+ }
+
+ @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#pomodoro-app{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#fastrvl{
+  text-align: center;
+  color: #fff;
+  border-radius :20px;
+  padding:20px;
+  margin:20px auto;
+  background : hsla(0, 0%, 0%, 0.514);
+  position: absolute;
+  top: 30%;
+  left: 0%;
+}
+
+#carped{
+  text-align: center;
+  color: #fff;
+  border-radius :20px;
+  padding: 20px;
+  margin:20px auto;
+  background : hsla(0, 0%, 0%, 0.514);
+  position: absolute;
+  top: 30%;
+  right: 0%;
+}
+
+#ders{
+  border-radius :20px;
+  padding:20px;
+  margin:20px auto;
+  background : hsla(0, 0%, 0%, 0.514);
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: medium;
+  text-align: center;
+  color: #ffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.button {
+  background-color: hsla(0, 0%, 0%, 0.257);
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+#lofivid{
+  text-align: center;
+}

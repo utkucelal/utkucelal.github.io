@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "ders çalışma extentiyonu",
+    "version": "1.0",
+    "description": "derslerini seç ve başlaya tıkla",
+    "icons": {
+      "16": "icon16.png"
+    },
+    "permissions": [
+      "activeTab",
+      "tabs"
+    ],
+    "browser_action": {
+      "js": ["popup.js"],
+      "default_popup": "popup.html",
+      "default_icon": "icon16.png"
+    }
+  }
