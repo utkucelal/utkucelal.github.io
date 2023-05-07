@@ -145,39 +145,13 @@
   border-radius: 16px;
 }
 
-#lofivid{
-  text-align: center;
-}
-
-#fastrvl-btn{
+#playlist_button{
   border-radius: 16px;
   width: 15%;
   transition: 0.3s
 }
 
-#fastrvl-btn:hover{
-  border-radius: 16px;
-  width: 25%;
-}
-
-#carped-btn{
-  border-radius: 16px;
-  width: 15%;
-  transition: 0.3s
-}
-
-#carped-btn:hover{
-  border-radius: 16px;
-  width: 25%;
-}
-
-#lofi-btn{
-  border-radius: 16px;
-  width: 15%;
-  transition: 0.3s
-}
-
-#lofi-btn:hover{
+#playlist_button:hover{
   border-radius: 16px;
   width: 25%;
 }
