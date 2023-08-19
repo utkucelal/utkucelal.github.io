@@ -12,7 +12,7 @@ const nextButton = document.getElementById("next");
 const muteButton = document.getElementById("mute");
 const voldownButton = document.getElementById("voldown");
 const volupButton = document.getElementById("volup");
-
+const thhbutton = document.getElementById("thh-button")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
@@ -222,3 +222,9 @@ previousButton.addEventListener("click", () => {
 });
 
 RefreshButton.addEventListener("click", getUserDataAndDisplayTrack)
+
+thhbutton.addEventListener("click", () => {
+    const podurl = 'https://open.spotify.com/show/1hExfvB0UnSuwDVhOSE4Oh'
+    window.open(
+        podurl, "_blank");
+})
