@@ -117,9 +117,13 @@ function userdata() {
         .then(data => {
             console.log("API Cevabı:", data);
             const username = data.display_name
-            const pp = data.images[0].url
-            console.log(pp)
-            loginButton.innerHTML = `<img src="${pp}" style="height: 24px; width: 24px;margin:5px;border-radius: 40%"></img>`+ username
+            try {
+                const pp = data.images[0].url
+                console.log(pp)
+                loginButton.innerHTML = `<img src="${pp}" style="height: 24px; width: 24px;margin:5px;border-radius: 40%"></img>`+ username
+            } catch (error) {
+                loginButton.innerHTML = `<img src="/beta/icerikler/Spotify_Icon_RGB_White.png" style="height: 24px; width: 24px;margin:5px;border-radius: 40%"></img>`+ username
+            }
             exitbutton.style.display = "block";
             accountbutton.style.display = "block";
             document.getElementById("current-track").innerHTML = "şimdi ise sağ alltaki yenileme tuşuna bas";
