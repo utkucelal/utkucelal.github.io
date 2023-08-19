@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/beta/main.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="/beta/icerikler/pp.png" id="minithumb">
+    <title>utku spotify ui</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="k1ng">
+
+
+</head>
+
+<body id="backgroundBody">
+    <div class="topnav" id="topnav">
+        <div id="login">
+            <a href="#" id="login-button"><img src="/beta/icerikler/Spotify_Icon_RGB_White.png" style="height: 24px; width: 24px;"></img> spotify ile Giriş Yap</a>
+            <a href="https://www.spotify.com/account" id="account">hesabım</a>
+            <a href="/index.html" id="exit-button">çıkış Yap</a>
+        </div>
+      </div>
+    
+    
+    <div id="textBody">
+        <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb">
+        <br></br>
+        <p style="font-size:160%;" id="current-track">başlamak için sağ üstteki giriş tuşuna bas</p>
+        <p style="font-size:120%;" id="singer">uygulamadan şimdilik şarkı başlatamazsın sadece kontrol edebilirsin bu yüzden arkada herhangi bir cihazdan spotify başlat</p>
+
+        <div>
+            <button id="previous" class="player_buttons"><img src="/beta/icerikler/Previous Icon.svg" style="width: 20px;height: 20px;"></button>
+            <button id="pause" class="player_buttons"><img src="/beta/icerikler/durdur.svg" style="width: 24px;height: 24px;"></button>
+            <button id="play" class="player_buttons"><img src="/beta/icerikler/baslat.svg" style="width: 24px;height: 24px;"></button>
+            <button id="next" class="player_buttons"><img src="/beta/icerikler/next.svg" style="width: 20px;height: 20px;"></button>
+        </div>
+        <div>
+            <button id="refresh" class="player_buttons"><img src="/beta/icerikler/Repeat Icon.svg" style="margin-top: 10px;"></button>
+            <p>-geliştirme aşamsında-</p> </p>eğer bir şeyler olması gerktiği gibi çalışmıyorsa lütfen üsteki yenile tuşuna basın</p>
+        </div>
+        <div id="ders" class="derscontainer" style="margin-top: 7px;">
+            <h3>Bugün ne çalışıyoruz paşam</h3>
+              <label>
+                <input type="checkbox" class="checkmark" name="subject" id="matematik" value="matematik"> Matematik
+              </label><br>
+              <label>
+                <input type="checkbox" class="checkmark" name="subject" id="biyoloji" value="biyoloji"> Biyoloji
+              </label><br>
+              <label>
+                <input type="checkbox" class="checkmark" name="subject" id="fizik" value="fizik"> Fizik
+              </label><br>
+              <label>
+                <input type="checkbox" class="checkmark" name="subject" id="kimya" value="kimya"> Kimya
+              </label><br>
+              <label>
+              <button id="start-btn" class="button">Tamamdır Başlayalım</button>
+          </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="../popup.js"></script>
+
+</body>
+
+</html>
