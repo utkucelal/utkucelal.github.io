@@ -19,6 +19,11 @@
 	border: none;
 }
 
+#plist{
+	display: none;
+}
+
+
 #exit-button{
 	display: none;
 	margin: 5px

@@ -13,6 +13,7 @@ const muteButton = document.getElementById("mute");
 const voldownButton = document.getElementById("voldown");
 const volupButton = document.getElementById("volup");
 const thhbutton = document.getElementById("thh-button")
+const plistbutton = document.getElementById("plist")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
@@ -79,6 +80,12 @@ function getUserDataAndDisplayTrack() {
                 const trackName = data.item.name;
                 const trackthumb = data.item.album.images[0].url
                 const volume = data.device.volume_percent
+                try {
+                    const playlisthref = data.context.href
+                    playlistdetailsdisplay(href=playlisthref)
+                } catch (error) {
+                    plistbutton.style.display = "none"
+                }
                 document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = trackName;
                 document.getElementById("singer").innerHTML= singer;
@@ -100,8 +107,34 @@ function getUserDataAndDisplayTrack() {
             document.getElementById("singer").innerHTML = "hala olmadıysa gir çık yap (cidden düzeliyo)"
             document.getElementById("current-track").innerHTML = "hata eğer açmadıysan önce spotiyden bişey aç";
             document.getElementById("thumb").src='/beta/icerikler/Rickrolling-in-4K.jpg'
+            plistbutton.style.display = "none"
         });
 };
+
+var plsiturl
+
+function playlistdetailsdisplay (href) {
+    const apiEndpoint = href;
+    const requestoptions = {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+    };
+
+    fetch(apiEndpoint, requestoptions)
+        .then(response => response.json())
+        .then(data => {
+            const plistname = data.name
+            const plsitico = data.images[0].url
+            plsiturl = data.external_urls.spotify
+            plistbutton.style.display = "block"
+            document.getElementById("plist").innerHTML = `<img src="${plsitico}" width="30px" style="border-radius: 20%" id="plistthumb">  ${plistname}`;
+        })
+        .catch(error => {
+            console.log("aga cinayet var")
+        });
+}
 
 function userdata() {
     const apiEndpoint = "https://api.spotify.com/v1/me";
@@ -157,7 +190,6 @@ PauseButton.addEventListener("click", () => {
         })
         .catch(() => {
         });
-    clearInterval(interval);
     setTimeout(getUserDataAndDisplayTrack, 1000)
 });
 
@@ -228,3 +260,9 @@ thhbutton.addEventListener("click", () => {
     window.open(
         podurl, "_blank");
 })
+
+plistbutton.addEventListener("click", () => {
+    window.open(
+     plsiturl, "_blank");
+})
+
