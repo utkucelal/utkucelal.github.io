@@ -14,6 +14,7 @@ const voldownButton = document.getElementById("voldown");
 const volupButton = document.getElementById("volup");
 const thhbutton = document.getElementById("thh-button")
 const plistbutton = document.getElementById("plist")
+const thumb = document.getElementById("thumb")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
@@ -104,8 +105,8 @@ function getUserDataAndDisplayTrack() {
         })
         .catch(error => {
             console.error("API Hatası:", error);
-            document.getElementById("singer").innerHTML = "hala olmadıysa gir çık yap (cidden düzeliyo)"
-            document.getElementById("current-track").innerHTML = "hata eğer açmadıysan önce spotiyden bişey aç";
+            document.getElementById("singer").innerHTML = "Hala olmadıysa gir çık yap (cidden düzeliyor)."
+            document.getElementById("current-track").innerHTML = "Hata: Eğer açmadıysan önce Spotify’den bir şey aç.";
             document.getElementById("thumb").src='/beta/icerikler/Rickrolling-in-4K.jpg'
             plistbutton.style.display = "none"
         });
@@ -159,16 +160,12 @@ function userdata() {
             }
             exitbutton.style.display = "block";
             accountbutton.style.display = "block";
-            document.getElementById("current-track").innerHTML = "şimdi ise sağ alltaki yenileme tuşuna bas";
-            document.getElementById("singer").innerHTML = "evet haklısın biraz fazla avellik";
+            document.getElementById("current-track").innerHTML = "Şimdi ise sağ alttaki yenileme tuşuna bas.";
+            document.getElementById("singer").innerHTML = "Evet, haklısın biraz fazla avellik";
             document.getElementById("thumb").src='/beta/icerikler/level2.png'
         })
         .catch(error => {
             console.error("API Hatası:", error);
-            document.getElementById("singer").innerHTML = "hala olmadıysa gir çık yap (cidden düzeliyo)";
-            document.getElementById("current-track").innerHTML = "hata eğer açmadıysan önce spotiyden bişey aç";
-            document.getElementById("thumb").src='/beta/icerikler/Rickrolling-in-4K.jpg'
-
         });
         setTimeout(getUserDataAndDisplayTrack(), 15000)
 }
@@ -265,4 +262,3 @@ plistbutton.addEventListener("click", () => {
     window.open(
      plsiturl, "_blank");
 })
-
