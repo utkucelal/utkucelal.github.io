@@ -57,10 +57,17 @@ if (params.access_token) {
     console.log("Access Token bulunamadı.");
 }
 
+var id
 function gecikmeliget() {
-    setTimeout(getUserDataAndDisplayTrack, 15000)
-    console.log('kontrol yapıldı')
+    id = setTimeout(getUserDataAndDisplayTrack, 10000)
+    //console.log(id)
+    //window.clearTimeout(id)
 }
+var singer
+var trackName
+var trackthumb
+var volume
+var playlisthref
 // Butona tıklanma olayını dinleyelim
 function getUserDataAndDisplayTrack() {
     const apiEndpoint = "https://api.spotify.com/v1/me/player";
@@ -77,12 +84,12 @@ function getUserDataAndDisplayTrack() {
             console.log("API Cevabı:", data);
             const type = data.currently_playing_type
             if (type === "track") {
-                const singer = data.item.artists[0].name
-                const trackName = data.item.name;
-                const trackthumb = data.item.album.images[0].url
-                const volume = data.device.volume_percent
+                singer = data.item.artists[0].name
+                trackName = data.item.name;
+                trackthumb = data.item.album.images[0].url
+                volume = data.device.volume_percent
                 try {
-                    const playlisthref = data.context.href
+                    playlisthref = data.context.href
                     playlistdetailsdisplay(href=playlisthref)
                 } catch (error) {
                     plistbutton.style.display = "none"
@@ -94,14 +101,14 @@ function getUserDataAndDisplayTrack() {
 
             }
             else {
-                const volume = data.device.volume_percent
+                volume = data.device.volume_percent
                 document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = "podcast";
                 document.getElementById("singer").innerHTML= "maalesef podcast ayrıntılarını göstermiyoruz ...";
                 document.getElementById("thumb").src=  '/beta/icerikler/podcast.png'
             }
-            
-            gecikmeliget()
+    window.clearTimeout(id)
+    gecikmeliget()
         })
         .catch(error => {
             console.error("API Hatası:", error);
@@ -137,6 +144,8 @@ function playlistdetailsdisplay (href) {
         });
 }
 
+var pp
+var username
 function userdata() {
     const apiEndpoint = "https://api.spotify.com/v1/me";
     const requestoptions = {
@@ -150,9 +159,9 @@ function userdata() {
         .then(response => response.json())
         .then(data => {
             console.log("API Cevabı:", data);
-            const username = data.display_name
+            username = data.display_name
             try {
-                const pp = data.images[0].url
+                pp = data.images[0].url
                 console.log(pp)
                 loginButton.innerHTML = `<img src="${pp}" style="height: 24px; width: 24px;margin:5px;border-radius: 40%"></img>`+ username
             } catch (error) {
@@ -250,7 +259,11 @@ previousButton.addEventListener("click", () => {
     setTimeout(getUserDataAndDisplayTrack, 1000)
 });
 
-RefreshButton.addEventListener("click", getUserDataAndDisplayTrack)
+RefreshButton.addEventListener("click", () => {
+    window.clearTimeout(id)
+    getUserDataAndDisplayTrack()
+    window.clearTimeout(id)
+})
 
 thhbutton.addEventListener("click", () => {
     const podurl = 'https://open.spotify.com/show/1hExfvB0UnSuwDVhOSE4Oh'
