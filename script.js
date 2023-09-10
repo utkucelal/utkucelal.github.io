@@ -1,4 +1,3 @@
-// Giriş butonunu alalım
 const loginButton = document.getElementById("login-button");
 const devicesDiv = document.getElementById("devices");
 const exitbutton = document.getElementById("exit-button")
@@ -15,43 +14,34 @@ const volupButton = document.getElementById("volup");
 const thhbutton = document.getElementById("thh-button")
 const plistbutton = document.getElementById("plist")
 const thumb = document.getElementById("thumb")
+const P0B = document.getElementById("p0B")
+const P1B = document.getElementById("p1B")
+const P2B = document.getElementById("p2B")
+const P3B = document.getElementById("p3B")
+const P0img = document.getElementById("p0img")
+const P1img = document.getElementById("p1img")
+const P2img = document.getElementById("p2img")
+const P3img = document.getElementById("p3img")
+const plistbuttons = document.getElementById("plist_buttons")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
 
-// Giriş butonuna tıklanınca Spotify oturum açma sayfasına yönlendir
+function getCookie(cname) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${cname}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 loginButton.addEventListener("click", () => {
-    // Spotify izinleri ve oturum açma URL'si
-    const scopes = "user-read-playback-state user-modify-playback-state";
-    const redirectUri = url; // Bu kısmı kendi uygulamanızın geri dönüş URL'si ile değiştirin
-    const authUrl = `https://accounts.spotify.com/authorize?client_id=a32624d1680147a09f703bcd8268b0db&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
-
-    // Kullanıcıyı oturum açma sayfasına yönlendir
-    window.location.href = authUrl;
+    window.location.href = window.location.origin+"/callback.html"
 });
-
-// URL'den hash kısmını al
-const hash = window.location.hash;
-
-// Hash içindeki parametreleri nesne olarak sakla
-const params = {};
-hash.substring(1).split("&").forEach(pair => {
-    const [key, value] = pair.split("=");
-    params[key] = decodeURIComponent(value);
-});
-var accessToken = params.access_token;
+var accessToken = getCookie(cname= "accessToken")
 
 // Değerleri kontrol et
-if (params.access_token) {
-
-    const accessToken = params.access_token;
-    const tokenType = params.token_type;
-    const expiresIn = params.expires_in;
-
+if (accessToken) {
     // Çıktıları kontrol etmek için konsola yazdır
-    console.log("Access Token:", accessToken);
-    console.log("Token Type:", tokenType);
-    console.log("Expires In:", expiresIn);
+    console.log("spotiy bağlantısı başarılı");
     setTimeout(userdata, 1000);
 } else {
     console.log("Access Token bulunamadı.");
@@ -60,15 +50,12 @@ if (params.access_token) {
 var id
 function gecikmeliget() {
     id = setTimeout(getUserDataAndDisplayTrack, 10000)
-    //console.log(id)
-    //window.clearTimeout(id)
 }
 var singer
 var trackName
 var trackthumb
 var volume
 var playlisthref
-// Butona tıklanma olayını dinleyelim
 function getUserDataAndDisplayTrack() {
     const apiEndpoint = "https://api.spotify.com/v1/me/player";
     const requestoptions = {
@@ -120,7 +107,6 @@ function getUserDataAndDisplayTrack() {
 };
 
 var plsiturl
-
 function playlistdetailsdisplay (href) {
     const apiEndpoint = href;
     const requestoptions = {
@@ -176,7 +162,68 @@ function userdata() {
         .catch(error => {
             console.error("API Hatası:", error);
         });
+        window.clearTimeout(id)
         setTimeout(getUserDataAndDisplayTrack(), 15000)
+        setTimeout(userplists(), 15000)
+}
+
+var p0uri
+var p1uri
+var p2uri
+var p3uri
+function userplists () {
+    const apiEndpoint = "https://api.spotify.com/v1/me/playlists?limit=5";
+    const requestoptions = {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+    };
+    fetch(apiEndpoint, requestoptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.items)
+            // resim çekme data.items[0].images[0].url
+            // id çekme data.items[0].id
+            //id tanımlama
+            p0uri = data.items[0].uri
+            p1uri = data.items[1].uri
+            p2uri = data.items[2].uri
+            p3uri = data.items[3].uri
+            //kapakları göster
+            plistbuttons.style.display = "block" // plistleri göster
+            P0B.innerHTML = `<img src="${data.items[0].images[0].url}" width="60px" id="p0img" style="border-radius: 20%;" title="${data.items[0].name}">`;
+            P1B.innerHTML = `<img src="${data.items[1].images[0].url}" width="60px" id="p0img" style="border-radius: 20%;" title="${data.items[1].name}">`;
+            P2B.innerHTML = `<img src="${data.items[2].images[0].url}" width="60px" id="p0img" style="border-radius: 20%;" title="${data.items[2].name}">`;
+            P3B.innerHTML = `<img src="${data.items[3].images[0].url}" width="60px" id="p0img" style="border-radius: 20%;" title="${data.items[3].name}">`;
+        })
+        .catch(error => {
+            console.error("API Hatası:", error);
+
+        });
+}
+
+function startplist (uri) {
+    const apiEndpoint = "https://api.spotify.com/v1/me/player/play";
+    const requestoptions = {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({
+            'context_uri': uri,
+            'position_ms': 0
+          })
+    };
+
+    fetch(apiEndpoint, requestoptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log("API Cevabı:", data);
+        })
+        .catch(error => {
+        });
+        setTimeout(getUserDataAndDisplayTrack, 1000)
 }
 
 PauseButton.addEventListener("click", () => {
@@ -274,4 +321,21 @@ thhbutton.addEventListener("click", () => {
 plistbutton.addEventListener("click", () => {
     window.open(
      plsiturl, "_blank");
+})
+
+P0B.addEventListener("click", () => {console.log("p0") 
+startplist(uri= p0uri)} )
+
+P1B.addEventListener("click", () => {console.log("p1") 
+startplist(uri= p1uri)} )
+
+P2B.addEventListener("click", () => {console.log("p2") 
+startplist(uri= p2uri)} )
+
+P3B.addEventListener("click", () => {console.log("p3") 
+startplist(uri= p3uri)} )
+
+exitbutton.addEventListener("click", () => {
+    document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = window.location.origin
 })

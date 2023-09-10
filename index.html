@@ -24,13 +24,11 @@
 <body id="backgroundBody">
     <div class="topnav" id="topnav">
         <div id="login">
-            <a href="#" id="login-button"><img src="/beta/icerikler/Spotify_Icon_RGB_White.png" style="height: 24px; width: 24px;"></img> spotify ile Giriş Yap</a>
-            <a href="https://www.spotify.com/account" id="account">Hesabım</a>
-            <a href="/index.html" id="exit-button">Çıkış yap</a>
+            <a href="#" id="login-button" style="text-decoration: none;"><img src="/beta/icerikler/Spotify_Icon_RGB_White.png" style="height: 24px; width: 24px;"></img> spotify ile Giriş Yap</a>
+            <a href="https://www.spotify.com/account" id="account"  style="text-decoration: none;">Hesabım</a>
+            <a id="exit-button"  style="text-decoration: none;cursor: pointer;">Çıkış yap</a>
         </div>
       </div>
-    
-    
     <div id="textBody">
         <p id="plist" href=""><img src="/beta/icerikler/Rickrolling-in-4K.jpg" width="40px" style="border-radius: 20%" id="plistthumb" class="card"> Çalma listesi bulunamadı.</p>
         <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb">
@@ -44,13 +42,20 @@
             <button id="play" class="player_buttons"><img src="/beta/icerikler/baslat.svg" style="width: 24px;height: 24px;"></button>
             <button id="next" class="player_buttons"><img src="/beta/icerikler/next.svg" style="width: 20px;height: 20px;"></button>
         </div>
-        <div>
             <button id="refresh" class="player_buttons"><img src="/beta/icerikler/Repeat Icon.svg" style="margin-top: 10px;"></button>
-            <p>-Geliştirme aşamasında-</p> </p>Eğer bir şeyler olması gerektiği gibi çalışmıyorsa, lütfen üstteki yenile tuşuna basın.</p>
-            
-            <p href="#" id="login-button">Ne dinleyeceğine karar vermedin mi?</p>
-            <button style="color: white;margin-top: 5px;background-color: transparent;padding: 10px 10px;border:none;align-items: center;border-radius: 16px" id="thh-button"><p href="#"><img src="https://i.scdn.co/image/ab6765630000f68db96b551dadbe5794b2929e81" style="height: 24px; width: 24px;"></img> THH podcast’e ne dersin?</p></button>
+            <div id="plist_buttons">
+                <br>
+                <button id="p0B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p0img" style="border-radius: 20%;" title="hata"></button>
+                <button id="p1B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p1img" style="border-radius: 20%;" title="hata"></button>
+                <button id="p2B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p2img" style="border-radius: 20%;" title="hata"></button>
+                <button id="p3B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p3img" style="border-radius: 20%;" title="hata"></button>
+            </div>
         </div>
+    <div id="infocard">
+        <p>-Geliştirme aşamasında-</p> </p>Eğer bir şeyler olması gerektiği gibi çalışmıyorsa, lütfen üstteki yenile tuşuna basın.</p>
+            <p href="#" >Ne dinleyeceğine karar vermedin mi?</p>
+            <button style="color: white;margin-top: 5px;background-color: transparent;padding: 10px 10px;border:none;align-items: center;border-radius: 16px" id="thh-button"><p href="#"><img src="https://i.scdn.co/image/ab6765630000f68db96b551dadbe5794b2929e81" style="height: 24px; width: 24px;"></img> THH podcast’e ne dersin?</p></button>
+    </div>
     <script src="../script.js"></script>
 </body>
 
