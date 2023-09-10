@@ -9,7 +9,7 @@
     <link href="/beta/main.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link rel="icon" href="/beta/icerikler/pp.png" id="minithumb">
-    <title>utku spotify ui</title>
+    <title id="title">utku spotify ui</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,15 +21,16 @@
 
 </head>
 
-<body id="backgroundBody">
+<body id="backgroundBody" style="background: linear-gradient(315deg, #8f24ec, #640cf8, #9428f4);">
     <div class="topnav" id="topnav">
         <div id="login">
             <a href="#" id="login-button" style="text-decoration: none;"><img src="/beta/icerikler/Spotify_Icon_RGB_White.png" style="height: 24px; width: 24px;"></img> spotify ile Giriş Yap</a>
             <a href="https://www.spotify.com/account" id="account"  style="text-decoration: none;">Hesabım</a>
             <a id="exit-button"  style="text-decoration: none;cursor: pointer;">Çıkış yap</a>
+            <a id="info" style="text-decoration: none;color: black;cursor: pointer;"><img src="/beta/icerikler/info.svg" style="height: 24px; width: 24px;" title="hakkında"></img></a>
         </div>
       </div>
-    <div id="textBody">
+    <div id="textBody" style="top: 50%;">
         <p id="plist" href=""><img src="/beta/icerikler/Rickrolling-in-4K.jpg" width="40px" style="border-radius: 20%" id="plistthumb" class="card"> Çalma listesi bulunamadı.</p>
         <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb">
         <br></br>
@@ -51,10 +52,12 @@
                 <button id="p3B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p3img" style="border-radius: 20%;" title="hata"></button>
             </div>
         </div>
-    <div id="infocard">
-        <p>-Geliştirme aşamasında-</p> </p>Eğer bir şeyler olması gerektiği gibi çalışmıyorsa, lütfen üstteki yenile tuşuna basın.</p>
-            <p href="#" >Ne dinleyeceğine karar vermedin mi?</p>
-            <button style="color: white;margin-top: 5px;background-color: transparent;padding: 10px 10px;border:none;align-items: center;border-radius: 16px" id="thh-button"><p href="#"><img src="https://i.scdn.co/image/ab6765630000f68db96b551dadbe5794b2929e81" style="height: 24px; width: 24px;"></img> THH podcast’e ne dersin?</p></button>
+    <div id="infocard" style="display: block;">
+        <p>-Geliştirme aşamasında-</p> 
+        </p>Eğer bir şeyler olması gerektiği gibi çalışmıyorsa, lütfen üstteki yenile tuşuna basın.</p>
+        <p href="#" >Ne dinleyeceğine karar vermedin mi?</p>
+        <button style="color: white;margin-top: 5px;background-color: transparent;border:none;align-items: center;border-radius: 16px" id="thh-button"><p href="#"><img src="https://i.scdn.co/image/ab6765630000f68db96b551dadbe5794b2929e81" style="height: 24px; width: 24px;"></img> THH podcast’e ne dersin?</p></button>
+        </p>made by utku with lots of ❤️</p>
     </div>
     <script src="../script.js"></script>
 </body>

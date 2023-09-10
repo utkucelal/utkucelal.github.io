@@ -23,6 +23,11 @@ const P1img = document.getElementById("p1img")
 const P2img = document.getElementById("p2img")
 const P3img = document.getElementById("p3img")
 const plistbuttons = document.getElementById("plist_buttons")
+const header = document.getElementById("title")
+const background = document.getElementById("backgroundBody")
+const infocard = document.getElementById("infocard")
+const info = document.getElementById("info")
+const textbody = document.getElementById("textBody")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
@@ -83,6 +88,7 @@ function getUserDataAndDisplayTrack() {
                 }
                 document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = trackName;
+                header.innerHTML = trackName;
                 document.getElementById("singer").innerHTML= singer;
                 document.getElementById("thumb").src=trackthumb
 
@@ -108,8 +114,15 @@ function getUserDataAndDisplayTrack() {
 
 var plsiturl
 function playlistdetailsdisplay (href) {
-    const apiEndpoint = href;
-    const requestoptions = {
+    if (href == "https://api.spotify.com/v1/me/tracks") {
+        const plistname = "beğenilenler"
+        const plsitico = "/beta/icerikler/liked.png"
+        plsiturl = data.external_urls.spotify
+        plistbutton.style.display = "block"
+        plistbutton.innerHTML = `<img src="${plsitico}" width="30px" style="border-radius: 20%" id="plistthumb">  ${plistname}`;
+    }else{
+        const apiEndpoint = href;
+        const requestoptions = {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${accessToken}`
@@ -128,6 +141,7 @@ function playlistdetailsdisplay (href) {
         .catch(error => {
             console.log("aga cinayet var")
         });
+    }
 }
 
 var pp
@@ -158,6 +172,7 @@ function userdata() {
             document.getElementById("current-track").innerHTML = "Şimdi ise sağ alttaki yenileme tuşuna bas.";
             document.getElementById("singer").innerHTML = "Evet, haklısın biraz fazla avellik";
             document.getElementById("thumb").src='/beta/icerikler/level2.png'
+            infocard.style.display = "none"
         })
         .catch(error => {
             console.error("API Hatası:", error);
@@ -338,4 +353,16 @@ startplist(uri= p3uri)} )
 exitbutton.addEventListener("click", () => {
     document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href = window.location.origin
+})
+
+info.addEventListener("click", () => {
+    if(infocard.style.display == "none"){
+        infocard.style.display = "block"
+        textbody.style.top = "40%"
+        console.log("infocard açıldı")
+    }else{
+        infocard.style.display = "none"
+        textbody.style.top = "50%"
+        console.log("infocard kapandı")
+    }
 })
