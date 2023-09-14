@@ -385,21 +385,25 @@ function themechanger(theme) {
     }
     if (theme == "witch"){
         yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#c31432");
         document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #c31432, #240b36)'
     }
 
     if (theme == "twilight"){
         yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#302b63");
         document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #0f0c29, #302b63, #24243e)'
     }
 
     if(theme == "atlas"){
         yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#C779D0");
         document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #FEAC5E, #C779D0, #4BC0C8)'
     }
 
     if (theme == "classic"){
         yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#640cf8");
         document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, rgb(143, 36, 236), rgb(100, 12, 248), rgb(148, 40, 244))'
     }
   }
