@@ -410,10 +410,3 @@ function yearCookie(yname, yvalue) {
     var expires = "; expires=" + date.toUTCString();
     document.cookie = yname + "=" + yvalue + expires + ";secure";
 }
-  
-
-function testfunc(test){
-    if (test == undefined){
-        console.log("değer yok")
-    }
-}
