@@ -16,7 +16,7 @@ if(actokenexist == true){
     params[key] = decodeURIComponent(value);
     });
     var accessToken = params.access_token;
-    document.cookie = `accessToken= ${accessToken}`;
+    createCookie(cname= "accessToken", cvalue=accessToken)
     window.location.href = window.location.origin
 }else {
     const scopes = "user-read-playback-state user-modify-playback-state";
@@ -27,3 +27,11 @@ if(actokenexist == true){
     window.location.href = authUrl;
 }
 }
+
+function createCookie(cname, cvalue) {
+    var date = new Date();
+    date.setTime(date.getTime() + (3600 * 1000)); // 3600 seconds in milliseconds
+    var expires = "; expires=" + date.toUTCString();
+    document.cookie = cname + "=" + cvalue + expires + ";secure";
+  }
+  

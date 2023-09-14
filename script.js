@@ -52,6 +52,11 @@ if (accessToken) {
     console.log("Access Token bulunamadı.");
 }
 
+window.onload = function() {
+    const usertheme = getCookie(cname= "theme")
+    themechanger(theme = usertheme)
+}
+
 var id
 function gecikmeliget() {
     id = setTimeout(getUserDataAndDisplayTrack, 10000)
@@ -78,7 +83,12 @@ function getUserDataAndDisplayTrack() {
             if (type === "track") {
                 singer = data.item.artists[0].name
                 trackName = data.item.name;
-                trackthumb = data.item.album.images[0].url
+                if (trackName == "Never Gonna Give You Up"){
+                    trackthumb = "/beta/icerikler/rickroll-roll.gif"
+                    }
+                else{
+                    trackthumb = data.item.album.images[0].url
+                }
                 volume = data.device.volume_percent
                 try {
                     playlisthref = data.context.href
@@ -91,7 +101,6 @@ function getUserDataAndDisplayTrack() {
                 header.innerHTML = trackName;
                 document.getElementById("singer").innerHTML= singer;
                 document.getElementById("thumb").src=trackthumb
-
             }
             else {
                 volume = data.device.volume_percent
@@ -115,11 +124,11 @@ function getUserDataAndDisplayTrack() {
 var plsiturl
 function playlistdetailsdisplay (href) {
     if (href == "https://api.spotify.com/v1/me/tracks") {
-        const plistname = "beğenilenler"
+        const plistname = " Beğenilenler"
         const plsitico = "/beta/icerikler/liked.png"
-        plsiturl = data.external_urls.spotify
+        plsiturl = "https://open.spotify.com/collection/tracks"
         plistbutton.style.display = "block"
-        plistbutton.innerHTML = `<img src="${plsitico}" width="30px" style="border-radius: 20%" id="plistthumb">  ${plistname}`;
+        document.getElementById("plist").innerHTML = `<img src="${plsitico}" width="30px" style="border-radius: 20%" id="plistthumb">  ${plistname}`;
     }else{
         const apiEndpoint = href;
         const requestoptions = {
@@ -173,6 +182,8 @@ function userdata() {
             document.getElementById("singer").innerHTML = "Evet, haklısın biraz fazla avellik";
             document.getElementById("thumb").src='/beta/icerikler/level2.png'
             infocard.style.display = "none"
+            textbody.style.top = "50%"
+
         })
         .catch(error => {
             console.error("API Hatası:", error);
@@ -358,7 +369,7 @@ exitbutton.addEventListener("click", () => {
 info.addEventListener("click", () => {
     if(infocard.style.display == "none"){
         infocard.style.display = "block"
-        textbody.style.top = "40%"
+        textbody.style.top = "35%"
         console.log("infocard açıldı")
     }else{
         infocard.style.display = "none"
@@ -366,3 +377,43 @@ info.addEventListener("click", () => {
         console.log("infocard kapandı")
     }
 })
+
+function themechanger(theme) {
+    if (theme == undefined){
+        var theme = document.getElementById("theme").value;
+        
+    }
+    if (theme == "witch"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #c31432, #240b36)'
+    }
+
+    if (theme == "twilight"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #0f0c29, #302b63, #24243e)'
+    }
+
+    if(theme == "atlas"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #FEAC5E, #C779D0, #4BC0C8)'
+    }
+
+    if (theme == "classic"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, rgb(143, 36, 236), rgb(100, 12, 248), rgb(148, 40, 244))'
+    }
+  }
+
+function yearCookie(yname, yvalue) {
+    var date = new Date();
+    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year in milliseconds
+    var expires = "; expires=" + date.toUTCString();
+    document.cookie = yname + "=" + yvalue + expires + ";secure";
+}
+  
+
+function testfunc(test){
+    if (test == undefined){
+        console.log("değer yok")
+    }
+}

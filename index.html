@@ -30,7 +30,7 @@
             <a id="info" style="text-decoration: none;color: black;cursor: pointer;"><img src="/beta/icerikler/info.svg" style="height: 24px; width: 24px;" title="hakkında"></img></a>
         </div>
       </div>
-    <div id="textBody" style="top: 50%;">
+    <div id="textBody" style="top: 35%;" >
         <p id="plist" href=""><img src="/beta/icerikler/Rickrolling-in-4K.jpg" width="40px" style="border-radius: 20%" id="plistthumb" class="card"> Çalma listesi bulunamadı.</p>
         <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb">
         <br></br>
@@ -51,6 +51,17 @@
                 <button id="p2B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p2img" style="border-radius: 20%;" title="hata"></button>
                 <button id="p3B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p3img" style="border-radius: 20%;" title="hata"></button>
             </div>
+            <br>
+            <div>
+                <p>Arkaplanı Değiştir:</p> 
+
+                <select id="theme" onchange="themechanger()">
+                    <option value="classic">klasik</option>
+                    <option value="witch">kırmızı-mor</option>
+                    <option value="twilight">alacakaranlık</option>
+                    <option value="atlas">pamuk şeker</option>
+                </select>
+            </div>
         </div>
     <div id="infocard" style="display: block;">
         <p>-Geliştirme aşamasında-</p> 
@@ -60,6 +71,7 @@
         </p>made by utku with lots of ❤️</p>
     </div>
     <script src="../script.js"></script>
+
 </body>
 
 </html>

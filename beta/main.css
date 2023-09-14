@@ -14,6 +14,13 @@
 	transition: 0.3s;
 }
 
+#theme{
+	color: white;
+    background-color: hsl(0deg 0% 0% / 59%);
+    border: none;
+	text-align: center;
+}
+
 #infocard{
 	text-align: center;
     position: absolute;
