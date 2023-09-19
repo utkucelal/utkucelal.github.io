@@ -19,7 +19,7 @@ if(actokenexist == true){
     createCookie(cname= "accessToken", cvalue=accessToken)
     window.location.href = window.location.origin
 }else {
-    const scopes = "user-read-playback-state user-modify-playback-state";
+    const scopes = "user-read-playback-state user-modify-playback-state playlist-modify-public playlist-modify-private";
     const redirectUri = url; 
     const authUrl = `https://accounts.spotify.com/authorize?client_id=a32624d1680147a09f703bcd8268b0db&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 

@@ -5,16 +5,15 @@
     <meta charset="utf-8">
     <meta name="theme-color" content="#640cf8" id="theme-color">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="utku spotify ui" property="og:title" />
+    <meta content="utku ui" property="og:title" />
     <meta content="spotify'dan çalan şarkıyı görüntüleyip kontrol etmek için basit bir webapp" property="og:description" />
     <meta content="utkucelal.github.io" property="og:url" />
     <meta content="/beta/icerikler/pp.png" property="og:image" />
     <meta content="#640cf8" data-react-helmet="true" name="theme-color" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/beta/main.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link rel="icon" href="/beta/icerikler/pp.png" id="minithumb">
-    <title id="title">utku spotify ui</title>
+    <title id="title">utku ui</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,20 +29,21 @@
             <a id="info" style="text-decoration: none;color: black;cursor: pointer;"><img src="/beta/icerikler/info.svg" style="height: 24px; width: 24px;" title="hakkında"></img></a>
         </div>
       </div>
-    <div id="textBody" style="top: 35%;" >
+    <div id="textBody" style="top: 35%; left: 50%; scale: 1;" >
         <p id="plist" href=""><img src="/beta/icerikler/Rickrolling-in-4K.jpg" width="40px" style="border-radius: 20%" id="plistthumb" class="card"> Çalma listesi bulunamadı.</p>
-        <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb">
+        <img src="/beta/icerikler/base.png" width="190px" style="border-radius: 20%" id="thumb"></img>
         <br></br>
-        <p style="font-size:160%;" id="current-track">Başlamak için sağ üstteki giriş tuşuna bas. </p>
+        <p style="font-size:160%;" id="current-track">Başlamak için sol üstteki giriş tuşuna bas. </p>
         <p style="font-size:120%;" id="singer">Uygulamadan şimdilik şarkı başlatamazsın, sadece kontrol edebilirsin. Bu yüzden arkada herhangi bir cihazdan Spotify başlat.</p>
 
         <div>
-            <button id="previous" class="player_buttons"><img src="/beta/icerikler/Previous Icon.svg" style="width: 20px;height: 20px;"></button>
-            <button id="pause" class="player_buttons"><img src="/beta/icerikler/durdur.svg" style="width: 24px;height: 24px;"></button>
-            <button id="play" class="player_buttons"><img src="/beta/icerikler/baslat.svg" style="width: 24px;height: 24px;"></button>
-            <button id="next" class="player_buttons"><img src="/beta/icerikler/next.svg" style="width: 20px;height: 20px;"></button>
+            <button id="previous" class="player_buttons"><img src="/beta/icerikler/Previous Icon.svg" style="width: 20px;height: 20px;" text="önceki"></button>
+            <button id="control" class="player_buttons"><img src="/beta/icerikler/Stop_and_play_fill.svg" style="width: 40px;height: 40px;" text="başlat/durdur"></button>
+            <button id="next" class="player_buttons"><img src="/beta/icerikler/next.svg" style="width: 20px;height: 20px;" text="sıradaki"></button>
         </div>
-            <button id="refresh" class="player_buttons"><img src="/beta/icerikler/Repeat Icon.svg" style="margin-top: 10px;"></button>
+            <button id="bookmark" class="player_buttons"><img src="/beta/icerikler/Bookmark_fill.svg" style="margin-top: 10px;" text="utku keşfine kaydet"></button>
+            <button id="refresh" class="player_buttons"><img src="/beta/icerikler/Repeat Icon.svg" style="margin-top: 10px;" text="yenile"></button>
+            <p id="bookmarkstatus" style="display: none;">utku keşfine başarılı bir şekilde eklendi</p>
             <div id="plist_buttons">
                 <br>
                 <button id="p0B" class="plist_buttons"><img src="/beta/icerikler/pp.png" width="60px" id="p0img" style="border-radius: 20%;" title="hata"></button>

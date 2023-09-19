@@ -28,9 +28,13 @@ const background = document.getElementById("backgroundBody")
 const infocard = document.getElementById("infocard")
 const info = document.getElementById("info")
 const textbody = document.getElementById("textBody")
+const control = document.getElementById("control")
+const bookmark = document.getElementById("bookmark")
+const bookmarkstatus = document.getElementById("bookmarkstatus")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
+console.log(`genişlik ${screen.width} uzunluk ${screen.height}`)
 
 function getCookie(cname) {
     const value = `; ${document.cookie}`;
@@ -57,15 +61,38 @@ window.onload = function() {
     themechanger(theme = usertheme)
 }
 
+window.addEventListener("load", () => {
+    if (screen.height < 800 || screen.width < 390){
+        console.log("aşşırı düşük ekran boyutu")
+        size()
+    }
+  });
+
+function size() {
+    infocard.style.display = "none"
+    textbody.style.top = "50%"
+    textbody.style.left = "45%"
+    textbody.style.scale = "0.9"}
+
+
 var id
 function gecikmeliget() {
     id = setTimeout(getUserDataAndDisplayTrack, 10000)
 }
+
+function hidebookmarkst() {
+    bookmarkstatus.style.display = "none" 
+}
+
 var singer
 var trackName
 var trackthumb
 var volume
 var playlisthref
+var playlisturl
+var albumurl
+var artisturl
+var muri
 function getUserDataAndDisplayTrack() {
     const apiEndpoint = "https://api.spotify.com/v1/me/player";
     const requestoptions = {
@@ -96,6 +123,10 @@ function getUserDataAndDisplayTrack() {
                 } catch (error) {
                     plistbutton.style.display = "none"
                 }
+                albumurl = data.item.album.external_urls.spotify
+                playlisturl = data.context.external_urls.spotify
+                artisturl = data.item.artists[0].external_urls.spotify
+                muri = data.item.uri
                 document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = trackName;
                 header.innerHTML = trackName;
@@ -120,6 +151,62 @@ function getUserDataAndDisplayTrack() {
             plistbutton.style.display = "none"
         });
 };
+
+var kplistid
+function createplist() {
+    const apiEndpoint = `https://api.spotify.com/v1/users/${userid}/playlists`;
+    const requestoptions = {
+        method: 'POST',
+        headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        'name': 'utku keşfi',
+        'description': 'utku ui kullanırken bulduğun en iyi şarkılar',
+        'public': false
+        })
+    };
+
+    fetch(apiEndpoint, requestoptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log("API Cevabı:", data);
+            kplistid = data.id
+            yearCookie(yname=`kplistid${userid}`, ythemevalue=kplistid)
+            setTimeout(saveplist(muri = muri), 310)
+        })
+        .catch(error => {
+        });
+}
+
+function saveplist(muri) {
+    var kplistid = getCookie(cname= `kplistid${userid}`)
+    const apiEndpoint = `https://api.spotify.com/v1/playlists/${kplistid}/tracks`;
+    const requestoptions = {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        },
+        // body: '{\n    "uris": [\n        "string"\n    ],\n    "position": 0\n}',
+        body: JSON.stringify({
+            'uris': [
+                `${muri}`
+            ],
+            'position': 0
+        })
+    };
+
+    fetch(apiEndpoint, requestoptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log("API Cevabı:", data);
+        })
+        .catch(error => {
+        });
+    
+}
 
 var plsiturl
 function playlistdetailsdisplay (href) {
@@ -155,6 +242,7 @@ function playlistdetailsdisplay (href) {
 
 var pp
 var username
+var userid
 function userdata() {
     const apiEndpoint = "https://api.spotify.com/v1/me";
     const requestoptions = {
@@ -169,6 +257,7 @@ function userdata() {
         .then(data => {
             console.log("API Cevabı:", data);
             username = data.display_name
+            userid = data.id
             try {
                 pp = data.images[0].url
                 console.log(pp)
@@ -178,9 +267,9 @@ function userdata() {
             }
             exitbutton.style.display = "block";
             accountbutton.style.display = "block";
-            document.getElementById("current-track").innerHTML = "Şimdi ise sağ alttaki yenileme tuşuna bas.";
+            document.getElementById("current-track").innerHTML = "Şimdi ise alttaki yenileme tuşuna bas.";
             document.getElementById("singer").innerHTML = "Evet, haklısın biraz fazla avellik";
-            document.getElementById("thumb").src='/beta/icerikler/level2.png'
+            document.getElementById("thumb").src='/beta/icerikler/Repeat Icon.svg'
             infocard.style.display = "none"
             textbody.style.top = "50%"
 
@@ -252,28 +341,8 @@ function startplist (uri) {
         setTimeout(getUserDataAndDisplayTrack, 1000)
 }
 
-PauseButton.addEventListener("click", () => {
-    // API isteği için gerekli ayarlar
-    const apiEndpoint = "https://api.spotify.com/v1/me/player/pause"; // Örnek API endpoint
-    const requestoptions = {
-        method: 'PUT',
-        headers: {
-            Authorization: `Bearer ${accessToken}`
-        },
-    };
-    // API isteği yapma
-    fetch(apiEndpoint, requestoptions)
-        .then(response => response.json()) // JSON formatında parse et
-        .then(data => {
-            console.log("API Cevabı:", data);
-        })
-        .catch(() => {
-        });
-    setTimeout(getUserDataAndDisplayTrack, 1000)
-});
-
-StartButton.addEventListener("click", () => {
-    // API isteği için gerekli ayarlar
+function playm() {
+       // API isteği için gerekli ayarlar
     const apiEndpoint = "https://api.spotify.com/v1/me/player/play"; // Örnek API endpoint
     const requestoptions = {
         method: 'PUT',
@@ -285,12 +354,41 @@ StartButton.addEventListener("click", () => {
     fetch(apiEndpoint, requestoptions)
         .then(response => response.json()) // JSON formatında parse et
         .then(data => {
-            console.log("API Cevabı:", data);
+            if (data.error.status == 403){
+                stopm()
+            }
         })
         .catch(() => {
         });
     setTimeout(getUserDataAndDisplayTrack, 1000)
-});
+}
+
+function stopm() {
+       // API isteği için gerekli ayarlar
+       const apiEndpoint = "https://api.spotify.com/v1/me/player/pause"; // Örnek API endpoint
+       const requestoptions = {
+           method: 'PUT',
+           headers: {
+               Authorization: `Bearer ${accessToken}`
+           },
+       };
+       // API isteği yapma
+       fetch(apiEndpoint, requestoptions)
+           .then(response => response.json()) // JSON formatında parse et
+           .then(data => {
+               if (data.error.status == 403){
+                   playm()
+
+               }
+           })
+           .catch(() => {
+           });
+       setTimeout(getUserDataAndDisplayTrack, 1000)
+}
+
+control.addEventListener("click", () => {
+    playm()
+})
 
 nextButton.addEventListener("click", () => {
     // API isteği için gerekli ayarlar
@@ -346,7 +444,22 @@ thhbutton.addEventListener("click", () => {
 
 plistbutton.addEventListener("click", () => {
     window.open(
-     plsiturl, "_blank");
+     playlisturl, "_blank");
+})
+
+document.getElementById("current-track").addEventListener("click", () => {
+    window.open(
+    albumurl, "_blank");
+})
+
+document.getElementById("thumb").addEventListener("click", () => {
+    window.open(
+    albumurl, "_blank");
+})
+
+document.getElementById("singer").addEventListener("click", () => {
+    window.open(
+    artisturl, "_blank");
 })
 
 P0B.addEventListener("click", () => {console.log("p0") 
@@ -375,6 +488,25 @@ info.addEventListener("click", () => {
         infocard.style.display = "none"
         textbody.style.top = "50%"
         console.log("infocard kapandı")
+    }
+})
+
+
+bookmark.addEventListener("click", () => {
+    var checkplist = getCookie(cname= `kplistid${userid}`)
+    if(checkplist == undefined){
+        bookmarkstatus.innerHTML = `${username} için yeni bir "utku keşfi" oluşturldu ve kaydelildi`
+        setTimeout(hidebookmarkst, 5000)
+        bookmarkstatus.style.display = "block" 
+        console.log("plist oluştu ve kaydedildi")
+        createplist()
+    }
+    else{
+        bookmarkstatus.innerHTML = `utku keşfine başarılı bir şekilde eklendi`
+        bookmarkstatus.style.display = "block"
+        setTimeout(hidebookmarkst, 5000)
+        console.log("kaydedildi")
+        saveplist(muri = muri)
     }
 })
 
@@ -414,3 +546,4 @@ function yearCookie(yname, yvalue) {
     var expires = "; expires=" + date.toUTCString();
     document.cookie = yname + "=" + yvalue + expires + ";secure";
 }
+
