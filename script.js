@@ -119,12 +119,12 @@ function getUserDataAndDisplayTrack() {
                 volume = data.device.volume_percent
                 try {
                     playlisthref = data.context.href
+                    playlisturl = data.context.external_urls.spotify
                     playlistdetailsdisplay(href=playlisthref)
                 } catch (error) {
                     plistbutton.style.display = "none"
                 }
                 albumurl = data.item.album.external_urls.spotify
-                playlisturl = data.context.external_urls.spotify
                 artisturl = data.item.artists[0].external_urls.spotify
                 muri = data.item.uri
                 document.cookie = `volume= ${volume}`
