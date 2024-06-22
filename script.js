@@ -111,12 +111,8 @@ function getUserDataAndDisplayTrack() {
             if (type === "track") {
                 singer = data.item.artists[0].name
                 trackName = data.item.name;
-                if (trackName == "Never Gonna Give You Up"){
-                    trackthumb = "/beta/icerikler/rickroll-roll.gif"
-                    }
-                else{
-                    trackthumb = data.item.album.images[0].url
-                }
+                specialtrack()
+                trackthumb = data.item.album.images[0].url
                 volume = data.device.volume_percent
                 try {
                     playlisthref = data.context.href
@@ -445,7 +441,7 @@ thhbutton.addEventListener("click", () => {
 
 
 gitbutton.addEventListener("click", () => {
-    const giturl = 'https://github.com/utkucelal'
+    const giturl = 'https://github.com/utkucelal/utkucelal.github.io'
     window.open( giturl, "_blank"); })
 
 plistbutton.addEventListener("click", () => {
@@ -515,6 +511,64 @@ bookmark.addEventListener("click", () => {
         saveplist(muri = muri)
     }
 })
+
+
+function specialtrack() {
+    if (trackName == "Espresso"){ // For the song "Espresso"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "espresso")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "MILLION DOLLAR BABY"){ // For the song "MILLION DOLLAR BABY"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "twilight")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "Lose Control"){ // For the song "Lose Control"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "witch")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "Pressure"){ // For the song "Pressure"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "twilight")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "la noia"){ // For the song "la noia"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "witch")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "The Code"){ // For the song "The Code"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "atlas")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "Özünlə Apar"){ // For the song "Özünlə Apar"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "witch")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "End of Beginning"){ // For the song "Pressure"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "twilight")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "EPİK AN"){ // For the song "Pressure"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "fresh")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else if(trackName == "UP!"){ // For the song "The Code"
+        const deftheme = getCookie(cname= "theme")
+        themechanger(theme = "atlas")
+        yearCookie(yname="theme", ythemevalue=deftheme)
+    }
+    else{
+        var usertheme = getCookie(cname= "theme")
+        themechanger(theme = usertheme)
+    }
+}
 
 function themechanger(theme) {
     if (theme == undefined){
