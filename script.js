@@ -31,6 +31,7 @@ const textbody = document.getElementById("textBody")
 const control = document.getElementById("control")
 const bookmark = document.getElementById("bookmark")
 const bookmarkstatus = document.getElementById("bookmarkstatus")
+const gitbutton = document.getElementById("git-button")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
@@ -442,6 +443,11 @@ thhbutton.addEventListener("click", () => {
         podurl, "_blank");
 })
 
+
+gitbutton.addEventListener("click", () => {
+    const giturl = 'https://github.com/utkucelal'
+    window.open( giturl, "_blank"); })
+
 plistbutton.addEventListener("click", () => {
     window.open(
      playlisturl, "_blank");
@@ -531,6 +537,18 @@ function themechanger(theme) {
         yearCookie(yname="theme", ythemevalue=theme)
         document.getElementById("theme-color").setAttribute("content", "#C779D0");
         document.getElementById("backgroundBody").style.background = 'linear-gradient(315deg, #FEAC5E, #C779D0, #4BC0C8)'
+    }
+
+    if(theme == "fresh"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#6284FF");
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(360deg, #FFFFFF, #6284FF, #4BC0C8)'
+    }
+
+    if(theme == "espresso"){
+        yearCookie(yname="theme", ythemevalue=theme)
+        document.getElementById("theme-color").setAttribute("content", "#603813");
+        document.getElementById("backgroundBody").style.background = 'linear-gradient(360deg, #603813, #b29f94)'
     }
 
     if (theme == "classic"){
