@@ -32,10 +32,12 @@ const control = document.getElementById("control")
 const bookmark = document.getElementById("bookmark")
 const bookmarkstatus = document.getElementById("bookmarkstatus")
 const gitbutton = document.getElementById("git-button")
+var bgcheckbox = document.getElementById("bgcheckbox")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
 console.log(`genişlik ${screen.width} uzunluk ${screen.height}`)
+
 
 function getCookie(cname) {
     const value = `; ${document.cookie}`;
@@ -63,9 +65,9 @@ window.onload = function() {
 }
 
 window.addEventListener("load", () => {
-    if (screen.height < 800 || screen.width < 390){
-        console.log("aşşırı düşük ekran boyutu")
-        size()
+    if (window.innerWidth < 390 || window.innerHeight < 800) {
+        console.log("aşşırı düşük ekran boyutu");
+        size();
     }
   });
 
@@ -111,7 +113,9 @@ function getUserDataAndDisplayTrack() {
             if (type === "track") {
                 singer = data.item.artists[0].name
                 trackName = data.item.name;
+                if (bgstatus == false){
                 specialtrack()
+                }
                 trackthumb = data.item.album.images[0].url
                 volume = data.device.volume_percent
                 try {
@@ -619,3 +623,12 @@ function yearCookie(yname, yvalue) {
     document.cookie = yname + "=" + yvalue + expires + ";secure";
 }
 
+var bgstatus = false
+function specialbg() {
+    if(bgstatus == false){
+        bgstatus = true}
+    else{
+        bgstatus = false
+    }
+    console.log(bgstatus)
+}
