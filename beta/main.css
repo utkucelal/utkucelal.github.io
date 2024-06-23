@@ -43,6 +43,10 @@
 	}
 	#infocard {
 		visibility: none;
+		width: 300px;
+		font-size: 12px;
+		top: 90%;
+		
 	}
 }
 
