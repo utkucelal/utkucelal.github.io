@@ -13,6 +13,10 @@
 	transition: 0.3s;
 }
 
+#thumb{
+	border-radius: 20%;
+}
+
 #theme{
 	color: white;
 	background-color: hsl(0deg 0% 0% / 59%);
@@ -35,8 +39,6 @@
     text-align:center;
     background : hsla(0, 0%, 0%, 0.514);
 }
-
-
 @media only screen and (max-width: 600px) {
 	#textBody {
 		width: 300px;
@@ -48,6 +50,9 @@
 		top: 90%;
 		
 	}
+}
+.plistthumb{
+	padding-bottom: 8000px;
 }
 
 #login{
@@ -70,11 +75,18 @@
 .plist_buttons:hover{
 	transform: scale(1.25);
 }
+.plist_buttons:hover{
+	animation: glowEffect 1.5s infinite alternate;
+}
 
 #plist{
 	display: none;
 }
 
+.bar:hover{
+	border-radius: 16px;
+	background-color: hsla(0, 0%, 0%, 0.514);
+}
 
 #exit-button{
 	display: none;
@@ -153,10 +165,42 @@
 	padding: 0;
   }
 
+
+
   #thh-button {
 	transition: transform .2s;
   }
   
   #thh-button:hover {
 	transform: scale(1.25);
+  }
+
+  .glow {
+	animation: glowEffect 1.5s infinite alternate;
+  }
+
+  @keyframes glowEffect {
+	0% {
+	  box-shadow: 0 0 5px #6b00ff, 0 0 20px #00d2ff, 0 0 30px #6b00ff;
+		border-radius: 500%;
+
+	}
+	100% {
+	  box-shadow: 0 0 10px #6b00ff, 0 0 30px #00d2ff, 0 0 40px #00d2ff;
+	  border-radius: 500%;
+	}
+  }
+
+  .thumbglow {
+	animation: thumbglowEffect 2s infinite alternate;
+  }
+
+  @keyframes thumbglowEffect {
+	0% {
+	  box-shadow: 0 0 5px #6b00ff, 0 0 20px #00d2ff, 0 0 30px #6b00ff;
+
+	}
+	100% {
+	  box-shadow: 0 0 10px #6b00ff, 0 0 30px #00d2ff, 0 0 40px #00d2ff;
+	}
   }

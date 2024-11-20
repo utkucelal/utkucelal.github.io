@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="authforother.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Display</title>
+</head>
+<body>
+    <p id="code"><script>
+        document.getElementById("code").innerHTML = document.cookie.split("accessToken=")[1].split(";")[0];
+    </script>3169</p>
+    <br>
+    <button onclick="copyToClipboard()">Copy</button>
+    <p >paste this code to terminal</p>
+</body>
+</html>

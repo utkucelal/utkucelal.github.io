@@ -32,12 +32,20 @@ const control = document.getElementById("control")
 const bookmark = document.getElementById("bookmark")
 const bookmarkstatus = document.getElementById("bookmarkstatus")
 const gitbutton = document.getElementById("git-button")
+const playingdevice = document.getElementById("playingdevice")
 var bgcheckbox = document.getElementById("bgcheckbox")
 const full_url = window.location.href
 var url = window.location.origin+window.location.pathname
 console.log(url)
 console.log(`genişlik ${screen.width} uzunluk ${screen.height}`)
 
+
+function yearCookie(yname, yvalue) {
+    var date = new Date();
+    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year in milliseconds
+    var expires = "; expires=" + date.toUTCString();
+    document.cookie = yname + "=" + yvalue + expires + ";secure";
+}
 
 function getCookie(cname) {
     const value = `; ${document.cookie}`;
@@ -90,12 +98,13 @@ function hidebookmarkst() {
 var singer
 var trackName
 var trackthumb
-var volume
+//var volume
 var playlisthref
 var playlisturl
 var albumurl
 var artisturl
 var muri
+var devicename
 function getUserDataAndDisplayTrack() {
     const apiEndpoint = "https://api.spotify.com/v1/me/player";
     const requestoptions = {
@@ -117,7 +126,7 @@ function getUserDataAndDisplayTrack() {
                 specialtrack()
                 }
                 trackthumb = data.item.album.images[0].url
-                volume = data.device.volume_percent
+                device = data.device.name
                 try {
                     playlisthref = data.context.href
                     playlisturl = data.context.external_urls.spotify
@@ -128,15 +137,15 @@ function getUserDataAndDisplayTrack() {
                 albumurl = data.item.album.external_urls.spotify
                 artisturl = data.item.artists[0].external_urls.spotify
                 muri = data.item.uri
-                document.cookie = `volume= ${volume}`
+                //document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = trackName;
                 header.innerHTML = trackName;
                 document.getElementById("singer").innerHTML= singer;
                 document.getElementById("thumb").src=trackthumb
             }
             else {
-                volume = data.device.volume_percent
-                document.cookie = `volume= ${volume}`
+                //volume = data.device.volume_percent
+                //document.cookie = `volume= ${volume}`
                 document.getElementById("current-track").innerHTML = "podcast";
                 document.getElementById("singer").innerHTML= "maalesef podcast ayrıntılarını göstermiyoruz ...";
                 document.getElementById("thumb").src=  '/beta/icerikler/podcast.png'
@@ -234,6 +243,7 @@ function playlistdetailsdisplay (href) {
             plsiturl = data.external_urls.spotify
             plistbutton.style.display = "block"
             document.getElementById("plist").innerHTML = `<img src="${plsitico}" width="30px" style="border-radius: 20%" id="plistthumb">  ${plistname}`;
+            playingdevice.innerHTML = `${device} ile çalınıyor`;
         })
         .catch(error => {
             console.log("aga cinayet var")
@@ -616,19 +626,17 @@ function themechanger(theme) {
     }
   }
 
-function yearCookie(yname, yvalue) {
-    var date = new Date();
-    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year in milliseconds
-    var expires = "; expires=" + date.toUTCString();
-    document.cookie = yname + "=" + yvalue + expires + ";secure";
-}
+
 
 var bgstatus = false
 function specialbg() {
-    if(bgstatus == false){
-        bgstatus = true}
-    else{
-        bgstatus = false
-    }
+    switch (bgstatus) {
+        case true:
+            bgstatus = false
+            break;
+        case false:
+            bgstatus = true
+            break;}
     console.log(bgstatus)
 }
+

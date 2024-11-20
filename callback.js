@@ -17,7 +17,13 @@ if(actokenexist == true){
     });
     var accessToken = params.access_token;
     createCookie(cname= "accessToken", cvalue=accessToken)
-    window.location.href = window.location.origin
+    if(window.location.href.includes("notsite")){
+        window.location.href = window.location.origin+"/authforother.html"
+    }
+    else{
+        window.location.href = window.location.origin
+    }
+    
 }else {
     const scopes = "user-read-playback-state user-modify-playback-state playlist-modify-public playlist-modify-private";
     const redirectUri = url; 
